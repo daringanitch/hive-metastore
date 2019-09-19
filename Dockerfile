@@ -10,6 +10,8 @@ ENV PATH $HIVE_HOME/bin:$PATH
 ENV HADOOP_HOME /opt/hadoop-$HADOOP_VERSION
 
 WORKDIR /opt
+COPY ./extra-libs/hadoop-aws-3.2.0.jar ./extra-libs/
+COPY ./extra-libs/aws-java-sdk-bundle-1.11.375.jar ./extra-libs/
 
 #Install Hive and PostgreSQL JDBC
 RUN apt-get update && apt-get install -y wget procps && \
@@ -34,6 +36,9 @@ ADD conf/hive-exec-log4j2.properties $HIVE_HOME/conf
 ADD conf/hive-log4j2.properties $HIVE_HOME/conf
 ADD conf/ivysettings.xml $HIVE_HOME/conf
 ADD conf/llap-daemon-log4j2.properties $HIVE_HOME/conf
+COPY ./extra-libs/hadoop-aws-3.2.0.jar ${HIVE_HOME}/lib/
+COPY ./extra-libs/aws-java-sdk-bundle-1.11.375.jar ${HIVE_HOME}/lib/
+RUN rm -rf ./extra-libs
 
 COPY startup.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/startup.sh
