@@ -19,6 +19,14 @@ COPY ./extra-libs/aws-java-sdk-bundle-1.11.375.jar ./extra-libs/
 #hive-site.xml should be copied to $SPARK_HOME/conf folder
 
 #Custom configuration goes here
+#Custom configuration goes here
+ADD conf/hive-site.xml $HIVE_HOME/conf
+ADD conf/beeline-log4j2.properties $HIVE_HOME/conf
+ADD conf/hive-env.sh $HIVE_HOME/conf
+ADD conf/hive-exec-log4j2.properties $HIVE_HOME/conf
+ADD conf/hive-log4j2.properties $HIVE_HOME/conf
+ADD conf/ivysettings.xml $HIVE_HOME/conf
+ADD conf/llap-daemon-log4j2.properties $HIVE_HOME/conf
 COPY ./extra-libs/hadoop-aws-3.2.0.jar ${HIVE_HOME}/lib/
 COPY ./extra-libs/aws-java-sdk-bundle-1.11.375.jar ${HIVE_HOME}/lib/
 RUN rm -rf ./extra-libs
