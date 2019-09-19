@@ -15,6 +15,7 @@ COPY ./extra-libs/aws-java-sdk-bundle-1.11.375.jar ./extra-libs/
 
 #Install Hive and PostgreSQL JDBC
 RUN apt-get update && apt-get install -y wget procps && \
+  apt-get install -y apt-utils && \
 	wget http://apache.mirror.digionline.de/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz && \
 	tar -xzvf apache-hive-$HIVE_VERSION-bin.tar.gz && \
 	mv apache-hive-$HIVE_VERSION-bin hive && \
